@@ -8,12 +8,12 @@ interface PianoKeysProps {
 }
 
 const CHORD_BUTTONS = [
-  { id: 'M3', label: 'M3', desc: 'Major Triad' },
-  { id: 'm3', label: 'm3', desc: 'Minor Triad' },
-  { id: 'Mm7', label: 'Mm7', desc: 'Dominant 7' },
-  { id: 'Dim7', label: 'Dim7', desc: 'Diminished' },
-  { id: '5th', label: '5th', desc: 'Perfect 5th' },
-  { id: '8va', label: '8va', desc: 'Octaves' },
+  { id: 'M3', label: 'M3' },
+  { id: 'm3', label: 'm3' },
+  { id: 'Mm7', label: 'Mm7' },
+  { id: 'Dim7', label: 'Dim7' },
+  { id: '5th', label: '5th' },
+  { id: '8va', label: '8va' },
 ];
 
 export const PianoKeys: React.FC<PianoKeysProps> = ({ 
@@ -48,7 +48,7 @@ export const PianoKeys: React.FC<PianoKeysProps> = ({
   return (
     <div className="w-full flex flex-col gap-2 my-1 relative bg-slate-900/30 p-2 rounded border border-slate-800">
         
-        {/* Chord Type Selectors */}
+        {/* Chord Type Selectors - Turquoise theme */}
         <div className="grid grid-cols-6 gap-1">
             {CHORD_BUTTONS.map(btn => {
                 const isActive = selectedChord === btn.id;
@@ -57,11 +57,11 @@ export const PianoKeys: React.FC<PianoKeysProps> = ({
                         key={btn.id}
                         onClick={() => onChordChange(isActive ? null : btn.id)}
                         className={`
-                            h-12 text-sm font-bold border-2 rounded-sm transition-all
+                            h-12 text-lg font-bold border-2 rounded-sm transition-all
                             flex flex-col items-center justify-center leading-none
                             ${isActive 
-                                ? 'bg-cyan-500 text-black border-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.4)]' 
-                                : 'bg-transparent text-cyan-500 border-cyan-500/50 hover:border-cyan-400 hover:bg-cyan-900/20'
+                                ? 'bg-cyan-500 text-black border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.6)]' 
+                                : 'bg-transparent text-cyan-500 border-cyan-500 hover:border-cyan-400 hover:bg-cyan-900/20'
                             }
                         `}
                     >
@@ -87,19 +87,19 @@ export const PianoKeys: React.FC<PianoKeysProps> = ({
                       active:scale-[0.98] origin-top transition-all duration-75
                       flex items-end justify-center pb-3
                       ${isActive 
-                        ? 'bg-pink-500 border-pink-700 text-white z-10 shadow-[0_0_15px_rgba(236,72,153,0.4)]' 
+                        ? 'bg-pink-500 border-pink-700 text-white z-10 shadow-[0_0_20px_rgba(236,72,153,0.6)]' 
                         : 'bg-slate-300 border-slate-400 text-slate-600 hover:bg-white'
                       }
                       first:rounded-bl-sm last:rounded-br-sm
                     `}
                   >
-                    <span className="text-lg font-bold">{def.note}</span>
+                    <span className="text-xl font-bold">{def.note}</span>
                   </button>
                 );
               })}
             </div>
 
-            {/* Black Keys */}
+            {/* Black Keys - NO LABELS */}
             {blackKeyDefs.map((def) => {
                 const isActive = selectedRoot === def.midi;
                 const leftPos = (def.boundaryIndex * whiteKeyWidthPct) - (blackKeyWidthPct / 2);
@@ -120,14 +120,12 @@ export const PianoKeys: React.FC<PianoKeysProps> = ({
                     className={`
                       absolute top-0 border-x border-b-4 border-slate-950 rounded-b-sm
                       active:scale-[0.98] origin-top transition-all duration-75 z-20
-                      flex items-end justify-center pb-2
                       ${isActive 
-                        ? 'bg-pink-600 border-pink-800 text-white shadow-[0_0_15px_rgba(236,72,153,0.5)]' 
-                        : 'bg-slate-800 border-slate-900 text-slate-500 hover:bg-slate-700'
+                        ? 'bg-pink-600 border-pink-800 shadow-[0_0_20px_rgba(236,72,153,0.7)]' 
+                        : 'bg-slate-800 border-slate-900 hover:bg-slate-700'
                       }
                     `}
                   >
-                     {/* Label removed as requested */}
                   </button>
                 );
             })}
